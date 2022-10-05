@@ -6,13 +6,13 @@ import (
 	"github.com/spf13/viper"
 )
 
-func ConfigYml(filename string, envArr []string) (string, error) {
-	if envArr == nil || len(envArr) != 4 {
+func ConfigYml(filepath string, envArr []string) (string, error) {
+	if envArr == nil || len(envArr) != 5 {
 		return "", errors.New("error: env配置数据不能为空 或 配置数量不全 ")
 	}
 
 	viper.SetConfigType("yml")
-	viper.SetConfigFile(filename)
+	viper.SetConfigFile(filepath)
 
 	if err := viper.ReadInConfig(); err != nil {
 		return "", errors.New("error: Failed to load yml file")
@@ -21,12 +21,14 @@ func ConfigYml(filename string, envArr []string) (string, error) {
 	dbUser := viper.GetString(envArr[0])
 	dbPass := viper.GetString(envArr[1])
 	dbHost := viper.GetString(envArr[2])
-	dbName := viper.GetString(envArr[3])
+	dbPort := viper.GetString(envArr[3])
+	dbName := viper.GetString(envArr[4])
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		dbUser,
 		dbPass,
 		dbHost,
+		dbPort,
 		dbName,
 	)
 	return dsn, nil
