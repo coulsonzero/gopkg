@@ -1,4 +1,4 @@
-package fileconfig
+package gopkg
 
 import (
 	"errors"

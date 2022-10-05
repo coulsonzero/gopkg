@@ -1,4 +1,4 @@
-package encrypt
+package gopkg
 
 import (
 	"crypto/md5"
