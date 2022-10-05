@@ -2,16 +2,15 @@ package gopkg
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/tidwall/gjson"
 	"os"
 )
 
 // ReadJson()       : json文件 -> json
-// ReadJsonOption() : json文件 -> json选项
+// ReadJsonOption() : json文件 -> json单个选项
 // json.Marshal()   : obj     -> json
 // json.Unmarshal() : json    -> obj
-// gjson.Get()      : 获取json字符串单个选项中的内容
+// gjson.Get()      : 获取json单个选项中的内容
 // sjson.Set()      : 返回修改单个选项内容后的json字符串
 
 // ReadJson json文件 -> json字符串
@@ -38,10 +37,10 @@ func ReadJson(filename string) string {
 }
 
 // ReadJsonOption 读取json文件中的单个选项
-func ReadJsonOption(filename string) {
+func ReadJsonOption(filename string, option string) gjson.Result {
 	f, _ := os.ReadFile(filename)
-	res := gjson.Get(string(f), "data")
-	fmt.Println(res)
+	res := gjson.Get(string(f), option)
+	return res
 }
 
 // Encode object(map/struct) -> json
@@ -54,6 +53,10 @@ func Encode(obj interface{}) (string, error) {
 }
 
 // Decode json -> object(map/struct)
-func Decode(jsonStr []byte, obj interface{}) error {
-	return json.Unmarshal(jsonStr, obj)
+func Decode(jsonStr []byte, obj interface{}) interface{} {
+	err := json.Unmarshal(jsonStr, &obj)
+	if err != nil {
+		panic("error: 解析失败json -> obj ")
+	}
+	return obj
 }
