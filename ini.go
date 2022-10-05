@@ -8,12 +8,12 @@ import (
 
 func ConfigInt(filename string, envArr []string) (string, error) {
 	if envArr == nil || len(envArr) != 4 {
-		return "", errors.New("Error: env配置数据不能为空 或 配置数量不全 !")
+		return "", errors.New("error: env配置数据不能为空 或 配置数量不全 ")
 	}
 
 	file, err := ini.Load(filename)
 	if err != nil {
-		return "", errors.New("Failed to load ini file")
+		return "", errors.New("failed to load ini file")
 	}
 
 	dbUser := file.Section("mysql").Key(envArr[0]).String()

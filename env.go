@@ -9,11 +9,11 @@ import (
 
 func ConfigEnv(envArr []string) (string, error) {
 	if envArr == nil || len(envArr) != 4 {
-		return "", errors.New("Error: env配置数据不能为空 或 配置数量不全 !")
+		return "", errors.New("error: env配置数据不能为空 或 配置数量不全 ")
 	}
 
 	if err := godotenv.Load(); err != nil {
-		return "", errors.New("Error: Failed to load env file")
+		return "", errors.New("error: Failed to load env file")
 	}
 
 	dbUser := os.Getenv(envArr[0])

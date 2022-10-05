@@ -8,14 +8,14 @@ import (
 
 func ConfigYml(filename string, envArr []string) (string, error) {
 	if envArr == nil || len(envArr) != 4 {
-		return "", errors.New("Error: env配置数据不能为空 或 配置数量不全 !")
+		return "", errors.New("error: env配置数据不能为空 或 配置数量不全 ")
 	}
 
 	viper.SetConfigType("yml")
 	viper.SetConfigFile(filename)
 
 	if err := viper.ReadInConfig(); err != nil {
-		return "", errors.New("Error: Failed to load yml file")
+		return "", errors.New("error: Failed to load yml file")
 	}
 
 	dbUser := viper.GetString(envArr[0])
