@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 )
 
+// ReadSql read sql string in sql file
 func ReadSql(path string) (string, error) {
 	sqlFile, err := filepath.Abs(path)
 	if err != nil {
