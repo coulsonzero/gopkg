@@ -1,3 +1,8 @@
+// version 2:
+// need update go version to 1.18
+// Author: CoulsonZero
+// Date: 2022-10-09
+
 package gopkg
 
 import (
@@ -10,8 +15,6 @@ import (
 	"os"
 	"strings"
 )
-
-// version 2
 
 type mysqlConf struct {
 	user   string
@@ -30,6 +33,12 @@ var cfg = mysqlConf{
 	dbname: "", // required
 }
 
+const params = "?charset=utf8mb4&parseTime=True&loc=Local"
+
+// ConfDSN
+// @Return: a string dsn
+// @Params: At least one dbname parameter is required
+// @FileTypes: The following file types are supported: ini yml env
 func ConfDSN(filepath string, mysqlConf ...string) (string, error) {
 	// load config file by file type
 	switch {
@@ -144,7 +153,7 @@ func (cfg *mysqlConf) formatDSN() string {
 		buf.WriteByte(')')
 		buf.WriteByte('/')
 		buf.WriteString(cfg.dbname)
-		buf.WriteString("?charset=utf8mb4&parseTime=True&loc=Local")
+		buf.WriteString(params)
 	}
 	return buf.String()
 }
