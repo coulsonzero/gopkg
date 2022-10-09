@@ -8,7 +8,7 @@ import (
 )
 
 // ConfigEnv
-// Deprecated
+// Deprecated: Use ConfDSN with options instead.
 func ConfigEnv(filepath string, envArr []string) (string, error) {
 	if envArr == nil || len(envArr) != 5 {
 		return "", errors.New("error: 配置数据不能为空 或 配置数量不全 ")
