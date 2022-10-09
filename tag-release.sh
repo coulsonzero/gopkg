@@ -1,4 +1,4 @@
 git tag
-git tag -a "v0.6.0-beta.1"
-git push origin v0.6.0-beta.1
+git tag -a v0.5.1 -m "update: modify config function"
+git push origin v0.5.1
 git tag
