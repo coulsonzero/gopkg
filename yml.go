@@ -6,7 +6,8 @@ import (
 	"log"
 )
 
-// ConfigYml Deprecated
+// ConfigYml
+// Deprecated
 func ConfigYml(filepath string, ymlArr []string) (string, error) {
 	if ymlArr == nil || len(ymlArr) != 5 {
 		log.Fatal("error: 配置数据不能为空 或 配置数量不全 ")
