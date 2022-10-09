@@ -7,9 +7,9 @@ import (
 
 func main() {
 	testcases := map[string][]string{
-		"conf/config.yml": {"mysql.dbname", "mysql.username", "mysql.password", "mysql.host", "mysql.port"},
-		"conf/config.ini": {"Db_username", "Db_password", "Db_host", "Db_port", "Db_name"},
-		"conf/.env":       {"db_name"},
+		"conf/config2.yml": {"mysql.dbname", "mysql.username", "mysql.password", "mysql.host", "mysql.port"},
+		"conf/config3.ini": {"Db_username", "Db_password", "Db_host", "Db_port", "Db_name"},
+		"conf/1.env":       {"db_name"},
 	}
 	for fp, tc := range testcases {
 		orig, err := gopkg.ConfDSN(fp, tc...)

@@ -11,7 +11,6 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"gopkg.in/ini.v1"
-	"log"
 	"os"
 	"strings"
 )
@@ -70,7 +69,8 @@ func loadIni(filepath string, mysqlConf ...string) {
 	// load ini
 	file, err := ini.Load(filepath)
 	if err != nil {
-		log.Fatal("error: Failed to load ini file")
+		// logger("error: Failed to load ini file")
+		logger("error: Failed to load ini file")
 	}
 
 	for _, v := range mysqlConf {
@@ -92,7 +92,7 @@ func loadYml(filepath string, mysqlConf ...string) {
 	viper.SetConfigType("yml")
 	viper.SetConfigFile(filepath)
 	if err := viper.ReadInConfig(); err != nil {
-		log.Fatal("error: Failed to load yml file")
+		logger("error: Failed to load yml file")
 	}
 
 	for _, v := range mysqlConf {
@@ -113,7 +113,7 @@ func loadYml(filepath string, mysqlConf ...string) {
 
 func loadEnv(filepath string, mysqlConf ...string) {
 	if err := godotenv.Load(filepath); err != nil {
-		log.Fatal("error: Failed to load env file")
+		logger("error: Failed to load env file")
 	}
 
 	for _, v := range mysqlConf {
