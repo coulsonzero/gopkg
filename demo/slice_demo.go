@@ -17,4 +17,8 @@ func main() {
 	gopkg.SlicePrint(slice)
 
 	gopkg.SlicePrint(slice2)
+
+	sliceReverse := gopkg.SliceReverse(slice)
+	gopkg.SlicePrint(sliceReverse)
+
 }
