@@ -6,6 +6,7 @@ import (
 	"gopkg.in/ini.v1"
 )
 
+// ConfigInt Deprecated
 func ConfigInt(filepath string, envArr []string) (string, error) {
 	if len(envArr) != 5 {
 		return "", errors.New("error: env配置数据不能为空 或 配置数量不全 ")
@@ -30,5 +31,4 @@ func ConfigInt(filepath string, envArr []string) (string, error) {
 		dbName,
 	)
 	return dsn, nil
-
 }
