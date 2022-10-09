@@ -7,7 +7,6 @@ package gopkg
 
 import (
 	"bytes"
-	"errors"
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"gopkg.in/ini.v1"
@@ -15,7 +14,7 @@ import (
 	"strings"
 )
 
-type mysqlConf struct {
+type mysqlConfig struct {
 	user   string
 	passwd string
 	host   string
@@ -24,7 +23,7 @@ type mysqlConf struct {
 }
 
 // default config
-var cfg = mysqlConf{
+var cfg = mysqlConfig{
 	user:   "root",
 	passwd: "root",
 	host:   "127.0.0.1",
@@ -38,23 +37,22 @@ const params = "?charset=utf8mb4&parseTime=True&loc=Local"
 // @Return: a string dsn
 // @Params: At least one dbname parameter is required
 // @FileTypes: The following file types are supported: ini yml env
-func ConfDSN(filepath string, mysqlConf ...string) (string, error) {
+func ConfDSN(filepath string, mysqlConfig ...string) (string, error) {
 	// load config file by file type
 	switch {
 	case strings.HasSuffix(filepath, "ini"):
-		loadIni(filepath, mysqlConf...)
+		loadIni(filepath, mysqlConfig...)
 	case strings.HasSuffix(filepath, "yml"):
-		loadYml(filepath, mysqlConf...)
+		loadYml(filepath, mysqlConfig...)
 	case strings.HasSuffix(filepath, "env"):
-		loadEnv(filepath, mysqlConf...)
+		loadEnv(filepath, mysqlConfig...)
 	default:
-		return "", errors.New("error: filepath is required")
+		logger("error: filepath is required")
 	}
 
-	// dbname
-	if len(cfg.dbname) == 0 {
-		return "", errors.New("error: dbname is required")
-	}
+	// check all mysql params is valid
+	// dbname especially
+	cfg.isValid()
 
 	// dsn
 	dsn := cfg.formatDSN()
@@ -65,7 +63,7 @@ func contains(s string, substr string) bool {
 	return strings.Contains(strings.ToLower(s), substr)
 }
 
-func loadIni(filepath string, mysqlConf ...string) {
+func loadIni(filepath string, mysqlConfig ...string) {
 	// load ini
 	file, err := ini.Load(filepath)
 	if err != nil {
@@ -73,7 +71,7 @@ func loadIni(filepath string, mysqlConf ...string) {
 		logger("error: Failed to load ini file")
 	}
 
-	for _, v := range mysqlConf {
+	for _, v := range mysqlConfig {
 		if contains(v, "user") {
 			cfg.user = file.Section("mysql").Key(v).String()
 		} else if contains(v, "pass") {
@@ -88,14 +86,14 @@ func loadIni(filepath string, mysqlConf ...string) {
 	}
 }
 
-func loadYml(filepath string, mysqlConf ...string) {
+func loadYml(filepath string, mysqlConfig ...string) {
 	viper.SetConfigType("yml")
 	viper.SetConfigFile(filepath)
 	if err := viper.ReadInConfig(); err != nil {
 		logger("error: Failed to load yml file")
 	}
 
-	for _, v := range mysqlConf {
+	for _, v := range mysqlConfig {
 		switch {
 		case contains(v, "user"):
 			cfg.user = viper.GetString(v)
@@ -111,12 +109,12 @@ func loadYml(filepath string, mysqlConf ...string) {
 	}
 }
 
-func loadEnv(filepath string, mysqlConf ...string) {
+func loadEnv(filepath string, mysqlConfig ...string) {
 	if err := godotenv.Load(filepath); err != nil {
 		logger("error: Failed to load env file")
 	}
 
-	for _, v := range mysqlConf {
+	for _, v := range mysqlConfig {
 		switch {
 		case contains(v, "user"):
 			cfg.user = os.Getenv(v)
@@ -130,10 +128,9 @@ func loadEnv(filepath string, mysqlConf ...string) {
 			cfg.dbname = os.Getenv(v)
 		}
 	}
-
 }
 
-func (cfg *mysqlConf) formatDSN() string {
+func (cfg *mysqlConfig) formatDSN() string {
 	var buf bytes.Buffer
 	if len(cfg.user) > 0 {
 		buf.WriteString(cfg.user)
@@ -156,4 +153,21 @@ func (cfg *mysqlConf) formatDSN() string {
 		buf.WriteString(params)
 	}
 	return buf.String()
+}
+
+func (cfg *mysqlConfig) isValid() {
+	switch {
+	case len(cfg.user) == 0:
+		logger("error: mysql user length cannot be zero")
+	case len(cfg.passwd) == 0:
+		logger("error: mysql password length cannot be zero")
+	case len(cfg.host) == 0:
+		logger("error: mysql host length cannot be zero")
+	case len(cfg.port) == 0:
+		logger("error: mysql port length cannot be zero")
+	case len(cfg.dbname) == 0:
+		logger("error: mysql dbname length cannot be zero")
+	default:
+		logger("All mysql config is valid")
+	}
 }
