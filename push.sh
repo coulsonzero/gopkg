@@ -28,6 +28,7 @@ else
     dev    : 推送dev
     master : 推送master
     tag    : 推送tag
+    tag-d  : 删除远程tag
 
     命令示例: sh push.sh dev
     "
