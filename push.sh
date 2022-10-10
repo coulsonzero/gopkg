@@ -1,27 +1,23 @@
 #! /bin/bash
 
-if [ ${#} -ge 1 ]
-then
-    case ${1} in
-        "dev")
-            bash ./shell/dev-push.sh
-        ;;
-        "master")
-            bash ./shell/master-push.sh
-        ;;
-        "both")
-            bash ./shell/dev-push.sh && bash ./shell/master-push.sh
-        ;;
-        "tag")
-            bash ./shell/tag-release.sh
-        ;;
-        "tag-d")
-            bash ./shell/tag-delete.sh
-        ;;
-        *)
-            echo "${1}No input"
-        ;;
-    esac
+if [ ${#} -ge 1 ]; then
+   if [[ ${1} == 'dev' ]]; then
+      bash ./shell/dev-push.sh
+   elif [[ ${1} == 'master' ]]; then
+      bash ./shell/master-push.sh
+   elif [[ ${1} == 'both' ]]; then
+      bash ./shell/dev-push.sh && bash ./shell/master-push.sh
+   elif [[ ${1} == 'tag' ]]; then
+       if [[ ${2} == '-d' ]]; then
+           bash ./shell/tag-delete.sh
+       elif [[ -n ${2} ]]; then
+           echo 'undefined the second argument '
+       else
+           bash ./shell/tag-release.sh
+       fi
+   else
+       echo "${1}No input"
+  fi
 else
     echo "
     command如下命令:
