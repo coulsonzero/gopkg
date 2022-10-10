@@ -1,5 +1,12 @@
 #! /bin/bash
 
+main() {
+    # shellcheck disable=SC2086
+    git tag -d ${version}
+    # shellcheck disable=SC2086
+    git push origin :refs/tags/${version}
+}
+
 git checkout master
 
 git tag
@@ -13,11 +20,4 @@ else
 fi
 
 git checkout dev
-
-
-main() {
-  # shellcheck disable=SC2086
-    git tag -d ${version}
-    # shellcheck disable=SC2086
-    git push origin :refs/tags/${version}
-}
+echo '------------------------'
