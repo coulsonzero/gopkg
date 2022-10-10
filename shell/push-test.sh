@@ -3,15 +3,9 @@
 if [ ${#} -ge 1 ]
 then
    case ${1} in
-        "dev")
-            bash ./shell/dev-push.sh
-        ;;
-        "master")
-            bash ./shell/master-push.sh
-        ;;
-        "both")
-            bash ./shell/dev-push.sh && bash ./shell/master-push.sh
-        ;;
+        "dev") bash ./shell/dev-push.sh ;;
+        "master") bash ./shell/master-push.sh ;;
+        "both") bash ./shell/dev-push.sh && bash ./shell/master-push.sh ;;
         "tag")
             if [[ ${2} == '-d' ]]; then
                 bash ./shell/tag-delete.sh
@@ -21,9 +15,7 @@ then
                 bash ./shell/tag-release.sh
             fi
         ;;
-        *)
-            echo "${1} undefined the first argument"
-        ;;
+        *) echo "${1} undefined the first argument" ;;
     esac
 else
     echo "
