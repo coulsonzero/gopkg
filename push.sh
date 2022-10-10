@@ -5,9 +5,9 @@ export CUR="shell"
 # shellcheck disable=SC2120
 function main() {
    if [ "$2" = "-d" ]; then         # 判断第二个输入参数为'-d' ?
-       bash ./shell/tag-delete.sh
+       bash tag-delete.sh
    elif [ -z "$2" ]; then           # 判断第二个输入参数 ?
-       bash ./shell/tag-release.sh
+       bash tag-release.sh
    else                             # 只有一个输入参数
        echo 'undefined the second argument '
    fi
