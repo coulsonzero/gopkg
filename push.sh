@@ -10,7 +10,7 @@ then
             bash master-push.sh
         ;;
         "both")
-            bash dev-push.sh > bash master-push.sh
+            bash dev-push.sh && bash master-push.sh
         ;;
         "tag")
             bash tag-release.sh
