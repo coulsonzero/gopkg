@@ -3,7 +3,7 @@
 function main() {
   git checkout dev
   git add . && git commit -m "[update]: $message"
-  git pull origin dev
+  # git pull origin dev
   git push origin dev
   exit 0
 }
