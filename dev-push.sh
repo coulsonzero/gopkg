@@ -1,4 +1,6 @@
+message=$*
+
 git checkout dev
 git add .
-git commit -m "update: add Deprecated function commit"
+git commit -m "update: ${message}"
 git push origin dev

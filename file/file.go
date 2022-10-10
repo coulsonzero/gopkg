@@ -1,7 +1,9 @@
-package gopkg
+package file
 
 import (
+	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -50,4 +52,15 @@ func WalkRemoveFiles(path string, filetype string) {
 			}
 		}
 	}
+}
+
+func ReadFile(path string) (string, error) {
+	if IsFile(path) {
+		d, err := ioutil.ReadFile(path)
+		if err != nil {
+			return "", err
+		}
+		return string(d), nil
+	}
+	return "", errors.New(path + "is not exists")
 }
