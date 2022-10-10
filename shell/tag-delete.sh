@@ -10,7 +10,7 @@ main() {
 
 git checkout master
 
-git tag
+git tag -l | tail -n 5
 # shellcheck disable=SC2162
 read -t 20 -p "[tag] delete version >>> " version
 if [[ $version != "" ]]; then

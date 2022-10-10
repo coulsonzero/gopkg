@@ -6,12 +6,12 @@ main() {
   # shellcheck disable=SC2086
   git push origin ${version}
   git fetch -p
-  git tag
+  git tag -l | tail -n 5
 }
 
 
 git checkout master
-git tag -l
+git tag
 # shellcheck disable=SC2162
 read -t 20 -p "[tag] release version >>> " version
 if [ -z "$version" ]; then
