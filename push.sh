@@ -4,19 +4,19 @@ if [ ${#} -ge 1 ]
 then
     case ${1} in
         "dev")
-            bash dev-push.sh
+            bash ./shell/dev-push.sh
         ;;
         "master")
-            bash master-push.sh
+            bash ./shell/master-push.sh
         ;;
         "both")
-            bash dev-push.sh && bash master-push.sh
+            bash ./shell/dev-push.sh && bash ./shell/master-push.sh
         ;;
         "tag")
-            bash tag-release.sh
+            bash ./shell/tag-release.sh
         ;;
         "tag-d")
-            bash tag-delete.sh
+            bash ./shell/tag-delete.sh
         ;;
         *)
             echo "${1}No input"
