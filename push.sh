@@ -4,13 +4,14 @@ export CUR="shell"
 
 # shellcheck disable=SC2120
 function main() {
-   if [ "$2" = "-d" ]; then         # 判断第二个输入参数为'-d' ?
-       bash tag-delete.sh
-   elif [ -z "$2" ]; then           # 判断第二个输入参数为空 ?
-       bash tag-release.sh
-   else                             # 只有一个输入参数
-       echo 'undefined the second argument '
+   # 判断第二个输入参数为'-d' ?
+   if [ "$2" = "-d" ]; then bash tag-delete.sh
+   # 判断第二个输入参数为空 ?
+   elif [ -z "$2" ]; then bash tag-release.sh
+   # 只有一个输入参数
+   else echo 'undefined the second argument '
    fi
+
    exit 0
 }
 
@@ -34,7 +35,7 @@ else
     4) tag    : 推送tag
     5) tag -d : 删除tag
 
-    命令示例: sh push.sh dev
+    命令示例: bash push.sh dev
     "
 fi
 
