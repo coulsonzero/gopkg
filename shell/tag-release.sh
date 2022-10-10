@@ -1,6 +1,6 @@
 #! /bin/bash
 
-main() {
+function main() {
   # shellcheck disable=SC2086
   git tag -a ${version} -m "[tag]: add a new tag-${version}"
   # shellcheck disable=SC2086

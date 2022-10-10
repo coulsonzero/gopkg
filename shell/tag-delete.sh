@@ -1,6 +1,6 @@
 #! /bin/bash
 
-main() {
+function main() {
     git fetch
     # shellcheck disable=SC2086
     git tag -d ${version}

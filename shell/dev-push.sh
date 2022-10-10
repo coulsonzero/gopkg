@@ -1,6 +1,6 @@
 #! /bin/bash
 
-main() {
+function main() {
   git checkout dev
   git add .
   git commit -m "[update]: ${message}"
@@ -12,9 +12,9 @@ main() {
 read -t 30 -p "[dev] Enter commit >>> " message
 if [[ $message != "" ]]; then
   echo "[dev] Success added a commit: ${message}"
-  main
 else
   echo "[dev] No commit input !"
 fi
 
+main
 echo '------------------------'
