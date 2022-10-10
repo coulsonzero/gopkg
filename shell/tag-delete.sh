@@ -6,6 +6,7 @@ function main() {
     git tag -d ${version}
     # shellcheck disable=SC2086
     git push origin :refs/tags/${version}
+    exit 0
 }
 
 git checkout master

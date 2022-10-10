@@ -7,6 +7,7 @@ function main() {
   git push origin ${version}
   git fetch -p
   git tag -l | tail -n 5
+  exit 0
 }
 
 
