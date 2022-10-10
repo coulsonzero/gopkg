@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 export CUR="shell"
 
 # shellcheck disable=SC2120
