@@ -6,7 +6,7 @@ export CUR="shell"
 function main() {
    if [ "$2" = "-d" ]; then         # 判断第二个输入参数为'-d' ?
        bash tag-delete.sh
-   elif [ -z "$2" ]; then           # 判断第二个输入参数 ?
+   elif [ -z "$2" ]; then           # 判断第二个输入参数为空 ?
        bash tag-release.sh
    else                             # 只有一个输入参数
        echo 'undefined the second argument '
