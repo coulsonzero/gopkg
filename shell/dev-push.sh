@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # shellcheck disable=SC2162
-read -p "[dev] Enter commit >>> " message
+read -t 30 -p "[dev] Enter commit >>> " message
 if [[ $message != "" ]]; then
   echo "[dev] Success added a commit: ${message}"
 else

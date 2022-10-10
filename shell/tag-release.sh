@@ -12,7 +12,7 @@ main() {
 git checkout master
 git tag -l
 # shellcheck disable=SC2162
-read -p "[tag] release version >>> " version
+read -t 20 -p "[tag] release version >>> " version
 if [ -z "$version" ]; then
   echo  '[tag] No input tag version !'
 else

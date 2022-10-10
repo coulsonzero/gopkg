@@ -12,7 +12,7 @@ git checkout master
 
 git tag
 # shellcheck disable=SC2162
-read -p "[tag] delete version >>> " version
+read -t 20 -p "[tag] delete version >>> " version
 if [[ $version != "" ]]; then
   main
   echo "[tag] Success deleted a tag: ${version}"
