@@ -16,6 +16,6 @@ git add .
 git commit -m "[update]: $message"
 git pull origin dev --rebase
 git push origin dev
-exit 0
+
 
 echo '------------------------'
