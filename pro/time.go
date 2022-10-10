@@ -1,3 +1,5 @@
-package pkg
+package pro
 
-func Now()
+func TimeNow()
+
+func TimeFormat() string

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/coulsonzero/gopkg"
+	"github.com/coulsonzero/gopkg/runtime/unsafe/pro"
 )
 
 type student struct {
@@ -12,6 +12,6 @@ type student struct {
 
 func main() {
 	s := student{}
-	res := gopkg.GetStructTag(s, "name", "json", "level")
+	res := pro.GetStructTag(s, "name", "json", "level")
 	fmt.Println(res)
 }

@@ -1,4 +1,4 @@
 #! /bin/bash
 
-cd test
+cd testing
 go test -v

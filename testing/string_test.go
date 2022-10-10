@@ -1,12 +1,12 @@
-package test
+package main
 
 import (
-	"github.com/coulsonzero/gopkg"
+	"github.com/coulsonzero/gopkg/pro"
 	"testing"
 )
 
 func TestToTitle(t *testing.T) {
-	org := gopkg.ToTitle("hello world!")
+	org := pro.ToTitle("hello world!")
 	if want := "Hello World!"; org != want {
 		t.Errorf("error: org: %q; want: %q", org, want)
 	}

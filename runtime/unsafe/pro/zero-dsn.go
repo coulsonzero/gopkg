@@ -3,7 +3,7 @@
 // Author: CoulsonZero
 // Date: 2022-10-09
 
-package dsn
+package pro
 
 import (
 	"bytes"

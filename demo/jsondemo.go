@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/coulsonzero/gopkg"
+	"github.com/coulsonzero/gopkg/pro"
 )
 
 type Student struct {
@@ -17,7 +17,7 @@ func TestEncode() string {
 		Email: "john@gmail.com",
 		Age:   20,
 	}
-	res, err := gopkg.Encode(s)
+	res, err := pro.Encode(s)
 	if err != nil {
 		fmt.Println("error: failed to encode obj to json")
 	}
@@ -28,7 +28,7 @@ func TestEncode() string {
 func TestDecode() {
 	// res := `{"Name":"john","Email":"john@gmail.com","Age":20}`
 	res := TestEncode()
-	ret := gopkg.Decode([]byte(res), Student{})
+	ret := pro.Decode([]byte(res), Student{})
 	fmt.Println(ret)
 	// &{john john@gmail.com 20}
 }

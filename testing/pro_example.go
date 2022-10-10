@@ -13,14 +13,22 @@ var testcases = map[string][]string{
 }
 
 func main() {
-	pro.Now()
-	fmt.Println(pro.MD5Encode("admin123"))
-
-	TestDSN()
-
+	// DemoTime()
+	// DemoPassword()
+	// DemoDSN()
+	// DemoCmd()
+	// DemoReadSql()
 }
 
-func TestDSN() {
+func DemoTime() {
+	pro.TimeNow()
+}
+
+func DemoPassword() {
+	fmt.Println(pro.MD5Encode("admin123"))
+}
+
+func DemoDSN() {
 	for fp, tc := range testcases {
 		orig, err := pro.ConfDSN(fp, tc...)
 		if err != nil {
@@ -32,4 +40,22 @@ func TestDSN() {
 		}
 	}
 	log.Println("All test success!")
+}
+
+// DemoCmd
+// Deprecated: 无法正常使用
+func DemoCmd() {
+	if err := pro.Command("ls"); err != nil {
+		log.Fatal(err)
+	} else {
+		log.Fatal("success: exec cmd command.")
+	}
+}
+
+func DemoReadSql() {
+	sqlStr, err := pro.ReadSql("conf/user.sql")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(sqlStr)
 }

@@ -62,3 +62,7 @@ func SliceReverse[T sl](s []T) []T {
 	}
 	return s
 }
+
+func testT(ns string) {
+	fmt.Println("asasas")
+}

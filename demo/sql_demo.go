@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/coulsonzero/gopkg"
+	"github.com/coulsonzero/gopkg/pro"
 	"log"
 )
 
@@ -11,7 +11,7 @@ func main() {
 }
 
 func DemoReadSql() {
-	sqlStr, err := gopkg.ReadSql("conf/user.sql")
+	sqlStr, err := pro.ReadSql("conf/user.sql")
 	if err != nil {
 		log.Fatal(err)
 	}
