@@ -5,7 +5,8 @@ main() {
   git tag -a ${version} -m "[tag]: add a new tag-${version}"
   # shellcheck disable=SC2086
   git push origin ${version}
-  git tag -l
+  git fetch -p
+  git tag
 }
 
 
