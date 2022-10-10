@@ -1,0 +1,6 @@
+package pro
+
+import (
+	_ "github.com/coulsonzero/gopkg"
+	_ "github.com/coulsonzero/gopkg/runtime/unsafe/pro"
+)

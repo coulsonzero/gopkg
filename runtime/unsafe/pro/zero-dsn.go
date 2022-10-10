@@ -3,7 +3,7 @@
 // Author: CoulsonZero
 // Date: 2022-10-09
 
-package gopkg
+package dsn
 
 import (
 	"bytes"
@@ -32,32 +32,6 @@ var cfg = mysqlConfig{
 }
 
 const params = "?charset=utf8mb4&parseTime=True&loc=Local"
-
-// ConfDSN
-// @Return: a string dsn
-// @Params: At least one dbname parameter is required
-// @FileTypes: The following file types are supported: ini yml env
-func ConfDSN(filepath string, mysqlConfig ...string) (string, error) {
-	// load config file by file type
-	switch {
-	case strings.HasSuffix(filepath, "ini"):
-		loadIni(filepath, mysqlConfig...)
-	case strings.HasSuffix(filepath, "yml"):
-		loadYml(filepath, mysqlConfig...)
-	case strings.HasSuffix(filepath, "env"):
-		loadEnv(filepath, mysqlConfig...)
-	default:
-		logger("error: filepath is required")
-	}
-
-	// check all mysql params is valid
-	// dbname especially
-	cfg.isValid()
-
-	// dsn
-	dsn := cfg.formatDSN()
-	return dsn, nil
-}
 
 func contains(s string, substr string) bool {
 	return strings.Contains(strings.ToLower(s), substr)
