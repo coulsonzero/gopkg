@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/coulsonzero/gopkg"
+	"github.com/coulsonzero/gopkg/files"
 )
 
 func main() {
@@ -13,6 +13,6 @@ func main() {
 	// fmt.Println(gopkg.IsFile("conf"))              // false
 	// fmt.Println(gopkg.IsFile("conf/config.ini"))   // true
 
-	gopkg.WalkRemoveFiles("./", "env")
+	files.WalkRemoveFiles("./", "env")
 
 }
