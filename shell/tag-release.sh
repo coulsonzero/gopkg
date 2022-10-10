@@ -11,7 +11,7 @@ main() {
 
 
 git checkout master
-git tag
+git tag -l | tail -n 4
 # shellcheck disable=SC2162
 read -t 20 -p "[tag] release version >>> " version
 if [ -z "$version" ]; then
