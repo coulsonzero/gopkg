@@ -15,7 +15,7 @@ then
         "tag")
             bash tag-release.sh
         ;;
-        "tag -d")
+        "tag-d")
             bash tag-delete.sh
         ;;
         *)
