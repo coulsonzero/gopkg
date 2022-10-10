@@ -1,3 +1,5 @@
+#! /bin/bash
+
 git checkout master
 git merge dev
 git pull origin master --rebase
