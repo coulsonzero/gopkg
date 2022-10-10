@@ -4,19 +4,6 @@ set -e
 
 export CUR="shell"
 
-# shellcheck disable=SC2120
-function main() {
-   # 判断第二个输入参数为'-d' ?
-   if [ "$2" = "-d" ]; then bash tag-delete.sh
-   # 判断第二个输入参数为空 ?
-   elif [ -z "$2" ]; then bash tag-release.sh
-   # 只有一个输入参数
-   else echo 'undefined the second argument '
-   fi
-
-   exit 0
-}
-
 # shellcheck disable=SC2164
 cd $CUR
 # 判断输入参数数量 > 1 ？
@@ -25,7 +12,11 @@ if [ ${#} -ge 1 ]; then
     "dev"   ) bash dev-push.sh                        ;;
     "master") bash master-push.sh                     ;;
     "both"  ) bash dev-push.sh && bash master-push.sh ;;
-    "tag"   ) main                                    ;;
+    "tag"   ) case $2 in
+              "-d") bash tag-delete.sh                ;;
+              ""  ) bash tag-release.sh               ;;
+              *   ) echo 'undefined second argument!' ;;
+              esac                                    ;;
     *) echo   "not input argument"                    ;;
   esac
 else
