@@ -2,7 +2,6 @@ package arrays
 
 import (
 	"fmt"
-	"github.com/wxnacy/wgo/arrays"
 )
 
 // make: 主动扩容, 返回新的slice, 原来的slice不变
@@ -47,13 +46,12 @@ func SliceRemoveElements[T sl](slice []T, index int) []T {
 // SliceContains
 // 判断是否包含目标元素
 func SliceContains[T sl](array []T, val T) bool {
-	// for _, v := range array {
-	// 	if v == target {
-	// 		return true
-	// 	}
-	// }
-	// return false
-	return arrays.Contains(array, val) == -1
+	for _, v := range array {
+		if v == val {
+			return true
+		}
+	}
+	return false
 }
 
 // SliceReverse
