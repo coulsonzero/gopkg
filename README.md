@@ -29,7 +29,7 @@ gopkg1.HashPassword("admin123")
 gopkg2.ConfigEnv()
 ```
 
-now
+v2 (v0.4.0)
 
 ```sh
 ➡︎  🍭  tree
@@ -43,6 +43,76 @@ now
 ├── go.sum
 ├── LICENSE
 └── README.md
+```
+
+v3 (v0.8.1-beta)
+
+> most different: import `unsafe`: `//go:linkname readSql .../pro.ReadSql`
+
+```sh
+➡︎  🍭  tree
+.
+├── LICENSE
+├── README.md
+├── arrays
+│   ├── set.go
+│   └── slice.go
+├── color
+│   └── color.go
+├── conf
+│   ├── config.ini
+│   ├── config.yml
+│   └── user.sql
+├── demo
+│   ├── file_demo.go
+│   ├── jsondemo.go
+│   ├── reflect_demo.go
+│   ├── slice_demo.go
+│   ├── sql_demo.go
+│   └── string_demo.go
+├── files
+│   └── file.go
+├── go.mod
+├── go.sum
+├── pro
+│   ├── arm.s
+│   ├── cmd.go
+│   ├── dsn.go
+│   ├── json.go
+│   ├── password.go
+│   ├── reflect.go
+│   ├── sort.go
+│   ├── sql.go
+│   ├── string.go
+│   ├── time.go
+│   └── zero-arm.go
+├── push.sh
+├── runtime
+│   └── unsafe
+│       └── pro
+│           ├── cmd.go
+│           ├── dsn.go
+│           ├── json.go
+│           ├── password.go
+│           ├── reflect.go
+│           ├── sort.go
+│           ├── sql.go
+│           ├── string.go
+│           ├── time.go
+│           ├── zero-dsn.go
+│           └── zero-log.go
+├── shell
+│   ├── dev-push.sh
+│   ├── master-push.sh
+│   ├── tag-delete.sh
+│   └── tag-release.sh
+├── test.sh
+└── testing
+├── cmd_test.go
+├── json_test.go
+├── pro_example.go
+├── slice_test.go
+└── string_test.go
 ```
 
 ### Usage (v0.4.0)
@@ -62,3 +132,26 @@ import "github.com/coulsonzero/gopkg"
 gopkg.HashPassword("admin123")
 gopkg.ConfigEnv(testEnvArr)
 ```
+
+
+### Usage(v0.8.1-beta)
+
+
+#### Install module
+```go
+$ go get github.com/coulsonzero/gopkg/pro
+```
+
+#### How to import it ?
+
+```go
+import "github.com/coulsonzero/gopkg/pro"
+```
+
+#### How to use it ?
+```go
+pro.HashPassword("admin123")
+pro.ConfigEnv(testEnvArr)
+```
+
+
