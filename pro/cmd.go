@@ -1,5 +1,7 @@
 package pro
 
-// Command
-// Deprecated: 无法正常使用
-func Command(cmd string) error
+// CmdExec exec cmd command
+func CmdExec(cmd string) error
+
+// CmdOutput return cmd command output
+func CmdOutput(cmd string) ([]byte, error)

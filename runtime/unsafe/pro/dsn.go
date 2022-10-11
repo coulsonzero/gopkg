@@ -6,7 +6,8 @@ import (
 )
 
 //go:linkname confDsn github.com/coulsonzero/gopkg/pro.ConfDSN
-// @Return: a string dsn
+// read mysql config to dsn from config file
+// @Return: dsn string
 // @Params: At least one dbname parameter is required
 // @FileTypes: The following file types are supported: ini yml env
 func confDsn(filepath string, mysqlConfig ...string) (string, error) {
@@ -22,8 +23,7 @@ func confDsn(filepath string, mysqlConfig ...string) (string, error) {
 		logger("error: filepath is required")
 	}
 
-	// check all mysql params is valid
-	// dbname especially
+	// check all mysql params is valid, especially dbname required !
 	cfg.isValid()
 
 	// dsn

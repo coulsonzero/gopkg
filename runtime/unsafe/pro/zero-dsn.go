@@ -38,10 +38,8 @@ func contains(s string, substr string) bool {
 }
 
 func loadIni(filepath string, mysqlConfig ...string) {
-	// load ini
 	file, err := ini.Load(filepath)
 	if err != nil {
-		// logger("error: Failed to load ini file")
 		logger("error: Failed to load ini file")
 	}
 

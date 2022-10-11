@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-const prefix = "| gopkg | "
+const prefix = "| pro | "
 
 func logger(e any) {
 	log.SetFlags(log.Ldate | log.Ltime)

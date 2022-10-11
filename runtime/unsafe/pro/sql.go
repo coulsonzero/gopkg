@@ -8,7 +8,7 @@ import (
 )
 
 //go:linkname readFileSql github.com/coulsonzero/gopkg/pro.ReadSql
-// readSqlFile read sql string in sql file
+// readFileSql read sql string from sql file
 func readFileSql(path string) (string, error) {
 	sqlFile, err := filepath.Abs(path)
 	if err != nil {

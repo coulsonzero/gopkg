@@ -2,19 +2,21 @@
 
 set -e
 
+git checkout dev
+git add .
 # shellcheck disable=SC2162
 read -t 30 -p "[dev] Enter commit >>> " message
 if [ "$message" != "" ]; then
-  echo "[dev] Success added a commit: $message"
-  git checkout dev
-  git add .
   git commit -m "[update]: $message"
-  git pull origin dev --rebase
+  echo "[dev] Success added a commit: $message"
+  git pull
   git push origin dev
+  exit 0
 else
+  git reset
   echo "[dev] No commit input !"
   exit 1
 fi
-
+git checkout dev
 
 echo '------------------------'
