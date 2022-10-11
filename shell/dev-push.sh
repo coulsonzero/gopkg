@@ -4,6 +4,7 @@ set -e
 
 git checkout dev
 git add .
+git status
 # shellcheck disable=SC2162
 read -t 30 -p "[dev] Enter commit >>> " message
 if [ "$message" != "" ]; then
