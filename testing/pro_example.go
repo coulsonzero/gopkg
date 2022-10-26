@@ -1,4 +1,4 @@
-package main
+package testing
 
 import (
 	"fmt"
@@ -45,7 +45,7 @@ func DemoDSN() {
 // DemoCmd
 // Deprecated: 无法正常使用
 func DemoCmd() {
-	if err := pro.Command("ls"); err != nil {
+	if err := pro.CmdExec("ls"); err != nil {
 		log.Fatal(err)
 	} else {
 		log.Fatal("success: exec cmd command.")

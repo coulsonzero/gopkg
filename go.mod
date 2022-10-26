@@ -3,10 +3,10 @@ module github.com/coulsonzero/gopkg
 go 1.18
 
 require (
+	github.com/go-sql-driver/mysql v1.6.0
 	github.com/joho/godotenv v1.4.0
 	github.com/spf13/viper v1.13.0
 	github.com/tidwall/gjson v1.14.3
-	github.com/wxnacy/wgo v1.0.4
 	github.com/zhangyunhao116/pdqsort v0.0.0-20220801033240-e86905252039
 	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4
 	golang.org/x/text v0.3.7

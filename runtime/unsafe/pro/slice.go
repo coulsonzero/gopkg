@@ -1,12 +1,13 @@
-package arrays
+package pro
 
 import (
 	"fmt"
 )
 
-// make: 主动扩容, 返回新的slice, 原来的slice不变
-// copy: 拷贝短的slice元素到另一个长的slice中, 自动截取
-// append: 自动扩容
+// make: 主动分配容量
+// copy: 拷贝后者的slice元素到前者的slice中, 自动截断，长度和容量不变
+// append: 末尾新增一个或多个元素, 长度超过容量时自动扩容
+
 // var arr = [...]int{1, 2, 4: 5, 6}          // len:  6, cap:  6, array: [1 2 0 0 5 6]
 // var arr = [...]int{'a': 1}                 // len: 98, cap: 98, array: [..., 1]
 
@@ -14,38 +15,42 @@ type sl interface {
 	int | int64 | float64 | string | bool
 }
 
-func SlicePrint[T sl](slice []T) {
-	fmt.Printf("len: %d, cap: %d, slice: %v \n", len(slice), cap(slice), slice)
+//go:linkname slice_print github.com/coulsonzero/gopkg/pro.SlicePrint
+func slice_print[T sl](slice ...[]T) {
+	// fmt.Printf("len: %d, cap: %d, slice: %v \n", len(slice), cap(slice), slice)
+	for _, v := range slice {
+		fmt.Printf("len: %d, cap: %d, slice: %v \n", len(v), cap(v), v)
+	}
 }
 
-// SliceInsert
-// 中间插入元素
-func SliceInsert[T sl](slice []T, index int, value T) []T {
+//go:linkname slice_insert github.com/coulsonzero/gopkg/pro.SliceInsert
+// 插入元素
+func slice_insert[T sl](slice []T, index int, value T) []T {
 	return append(slice[:index], append([]T{value}, slice[index:]...)...)
 }
 
-func sliceInsert(slice []int, index int, value int) []int {
+func slice_insert2(slice []int, index int, value int) []int {
 	slice = append(slice, 0)
 	copy(slice[index+1:], slice[index:])
 	slice[index] = value
 	return slice
 }
 
-// SliceRemove
+//go:linkname slice_remove github.com/coulsonzero/gopkg/pro.SliceRemove
 // 删除单个元素
-func SliceRemove[T sl](slice []T, index int) []T {
+func slice_remove[T sl](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
-// SliceRemoveElements
+//go:linkname slice_removeElems github.com/coulsonzero/gopkg/pro.SliceRemoveElems
 // 删除部分元素
-func SliceRemoveElements[T sl](slice []T, index int) []T {
+func slice_removeElems[T sl](slice []T, index int) []T {
 	return slice[index:]
 }
 
-// SliceContains
+//go:linkname slice_contains github.com/coulsonzero/gopkg/pro.SliceContains
 // 判断是否包含目标元素
-func SliceContains[T sl](array []T, val T) bool {
+func slice_contains[T sl](array []T, val T) bool {
 	for _, v := range array {
 		if v == val {
 			return true
@@ -54,15 +59,11 @@ func SliceContains[T sl](array []T, val T) bool {
 	return false
 }
 
-// SliceReverse
-// 数组反转
-func SliceReverse[T sl](s []T) []T {
+//go:linkname slice_reverse github.com/coulsonzero/gopkg/pro.SliceReverse
+// 反转
+func slice_reverse[T sl](s []T) []T {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
 	}
 	return s
-}
-
-func testT(ns string) {
-	fmt.Println("asasas")
 }

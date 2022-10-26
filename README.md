@@ -1,5 +1,9 @@
 # gopkg
-A module repository for Golang 
+A module repository for Golang
+
+[![Go gopkg/pro](https://pkg.go.dev/badge/github.com/coulsonzero/gopkg/pro.svg)](https://pkg.go.dev/github.com/coulsonzero/gopkg/pro)
+
+[//]: # (<a href="https://pkg.go.dev/github.com/coulsonzero/gopkg/pro"><img src="https://pkg.go.dev/badge/github.com/coulsonzero/gopkg/pro.svg" alt="Go Reference"></a>)
 
 
 ### What I've done ?  (v0.4.0)
@@ -32,7 +36,7 @@ gopkg2.ConfigEnv()
 v2 (v0.4.0)
 
 ```sh
-➡︎  🍭  tree
+$ tree
 .
 ├── bcrypt.go
 ├── md5.go
@@ -50,7 +54,7 @@ v3 (v0.8.1-beta)
 > most different: import `unsafe`: `//go:linkname readSql .../pro.ReadSql`
 
 ```sh
-➡︎  🍭  tree
+$ tree
 .
 ├── LICENSE
 ├── README.md
@@ -117,7 +121,7 @@ v3 (v0.8.1-beta)
 
 ### Usage (v0.4.0)
 #### Install module
-```go
+```sh
 $ go get github.com/coulsonzero/gopkg
 ```
 
@@ -138,7 +142,7 @@ gopkg.ConfigEnv(testEnvArr)
 
 
 #### Install module
-```go
+```sh
 $ go get github.com/coulsonzero/gopkg/pro
 ```
 

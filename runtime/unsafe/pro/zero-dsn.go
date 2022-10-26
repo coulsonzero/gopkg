@@ -7,6 +7,7 @@ package pro
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
 	"gopkg.in/ini.v1"
@@ -128,6 +129,7 @@ func (cfg *mysqlConfig) formatDSN() string {
 }
 
 func (cfg *mysqlConfig) isValid() {
+	fmt.Println(cfg)
 	switch {
 	case len(cfg.user) == 0:
 		logger("error: mysql user length cannot be zero")
@@ -140,6 +142,6 @@ func (cfg *mysqlConfig) isValid() {
 	case len(cfg.dbname) == 0:
 		logger("error: mysql dbname length cannot be zero")
 	default:
-		logger("All mysql config is valid")
+		fmt.Println("[pro] your mysql config is valida")
 	}
 }
