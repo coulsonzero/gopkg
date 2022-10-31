@@ -11,7 +11,7 @@ if [ "$message" != "" ]; then
   git commit -m "[update]: $message"
   git pull origin dev
   git push origin dev
-  exit 0
+#  exit 0
 else
   git reset
   echo "[dev] You haven't entered any comments !"
