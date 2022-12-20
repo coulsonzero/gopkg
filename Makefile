@@ -16,3 +16,5 @@ master:
 	@git checkout dev
 	@echo '------------------------'
 
+both:
+	make dev & make master
