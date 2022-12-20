@@ -17,4 +17,5 @@ master:
 	@echo '------------------------'
 
 both:
-	make dev & make master
+	make dev
+	make master
