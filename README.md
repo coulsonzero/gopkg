@@ -1,10 +1,19 @@
 # gopkg
 A module repository for Golang
 
-[![Go gopkg/pro](https://pkg.go.dev/badge/github.com/coulsonzero/gopkg/pro.svg)](https://pkg.go.dev/github.com/coulsonzero/gopkg/pro)
+<p align='center'>
+<a href="https://pkg.go.dev/github.com/coulsonzero/gopkg/pro"><img src="https://pkg.go.dev/badge/github.com/coulsonzero/gopkg/pro.svg" alt="Go Reference"></a>
+<a href="https://go.dev"><img alt="Support Go version" src="https://img.shields.io/badge/Go-v1.18-26C2F0"></a>
+<a href="https://github.com/coulsonzero/gopkg/blob/master/LICENSE" ><img src="https://img.shields.io/github/license/coulsonzero/gopkg?label=License"></a>
+<a href="https://github.com/coulsonzero/gopkg"><img alt="visitor" src="https://visitor-badge.laobi.icu/badge?page_id=coulsonzero.gopkg"></a>
+<img src="https://img.shields.io/badge/Code%20rows-3214-success">
+
+</p>
+
 
 [//]: # (<a href="https://pkg.go.dev/github.com/coulsonzero/gopkg/pro"><img src="https://pkg.go.dev/badge/github.com/coulsonzero/gopkg/pro.svg" alt="Go Reference"></a>)
 
+[//]: # ([![Go gopkg/pro]&#40;https://pkg.go.dev/badge/github.com/coulsonzero/gopkg/pro.svg&#41;]&#40;https://pkg.go.dev/github.com/coulsonzero/gopkg/pro&#41;)
 
 ### What I've done ?  (v0.4.0)
 remove all subdirectories to update the import package

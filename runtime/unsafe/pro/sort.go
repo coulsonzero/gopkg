@@ -25,7 +25,9 @@ func sortStr(s []string, reverse ...bool) {
 		// 9 34 30 3
 		sort.Sort(sort.Reverse(sort.StringSlice(s)))
 		// 9 34 3 30
-		// sort.Slice(s, func(i, j int) bool {return s[i]+s[j] >= s[j]+s[i]})
+		// sort.Slice(s, func(i, j int) bool {
+		//     return s[i]+s[j] > s[j]+s[i]
+		// })
 	}
 }
 

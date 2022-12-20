@@ -10,8 +10,6 @@ func SliceInsert[T sl](slice []T, index int, value T) []T
 
 func SliceRemove[T sl](slice []T, index int) []T
 
-func SliceRemoveElems[T sl](slice []T, index int) []T
-
 func SliceContains[T sl](array []T, val T) bool
 
 func SliceReverse[T sl](s []T) []T

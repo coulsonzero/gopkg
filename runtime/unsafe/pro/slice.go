@@ -42,12 +42,6 @@ func slice_remove[T sl](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
-//go:linkname slice_removeElems github.com/coulsonzero/gopkg/pro.SliceRemoveElems
-// 删除部分元素
-func slice_removeElems[T sl](slice []T, index int) []T {
-	return slice[index:]
-}
-
 //go:linkname slice_contains github.com/coulsonzero/gopkg/pro.SliceContains
 // 判断是否包含目标元素
 func slice_contains[T sl](array []T, val T) bool {
