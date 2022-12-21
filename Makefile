@@ -1,6 +1,9 @@
 
+# make help
+help:
+	@bash push.sh
 
-
+# make dev
 dev:
 	@git checkout dev
 	@git add .
@@ -10,6 +13,7 @@ dev:
 	@git checkout dev
 	@echo '------------------------'
 
+# make master
 master:
 	@git checkout master
 	@git merge dev
@@ -18,6 +22,7 @@ master:
 	@git checkout dev
 	@echo '------------------------'
 
+# make both
 both:
 	make dev
 	make master
@@ -30,9 +35,9 @@ tag-d:
 	@git checkout dev
 	@echo '------------------------'
 
-# make tag version=0.9.2
+# make tag version=v0.9.2
 tag:
 	@git checkout master
-	@-if [ -z ${version} ]; then echo '[tag] No input tag version !';  else git tag -a ${version} -m "[tag]: add a new tag-${version}" & git push origin ${version} & git fetch -p & git tag -l | tail -n 5 & echo "[tag] Success added a new tag: ${version}"; fi
+	@-if [ -z ${version} ]; then echo '[tag] No input tag version !'; else git tag -a ${version} -m "[tag]: add a new tag-${version}" & git push origin ${version} & git fetch -p & git tag -l | tail -n 5 & echo "[tag] Success added a new tag: ${version}"; fi
 	@git checkout dev
 	@echo '------------------------'
