@@ -3,6 +3,7 @@ package files
 import (
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -65,4 +66,11 @@ func ReadFile(path string) (string, error) {
 		return string(d), nil
 	}
 	return "", errors.New(path + "is not exists")
+}
+
+func readFile(filepath string) string {
+	file, _ := os.Open(filepath)
+	res, _ := io.ReadAll(file)
+
+	return string(res)
 }
