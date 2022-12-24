@@ -30,8 +30,7 @@ both:
 tag-d:
 	@git checkout master
 	@git tag -l | tail -n 5
-	@read -t 20 -p "[tag] delete version >>> " version
-	@if [[ $version != "" ]]; then git fetch & git tag -d ${version} & git push origin :refs/tags/${version} & exit 0 & echo "[tag] Success deleted a tag: ${version}"; else echo  'No input delete version !'; fi
+	@-if [[ $version != "" ]]; then git fetch & git tag -d ${version} & git push origin :refs/tags/${version} & exit 0 & echo "[tag] Success deleted a tag: ${version}"; else echo  'No input delete version !'; fi
 	@git checkout dev
 	@echo '------------------------'
 
