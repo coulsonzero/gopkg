@@ -29,35 +29,25 @@ SELECT id,name,email FROM users WHERE email = ? LIMIT 1;
 DROP TABLE users;
 */
 
-/**
- *
- * zeroSql, _ := Load("query.sql")
- *
- *	// zeroSql.PrintResult()
- *	// println(zeroSql.matchTag)
- *  // zeroSql.SetTag("type")
- *
- *  =========== first: default tag by name ===========
- *
- *	// query, _ := zeroSql.LookupQuery("create-users-table")
- *	// query, _ := zeroSql.LookupQuery("create-user")
- * 	// query, _ := zeroSql.LookupQuery("find-users-by-email")
- *	// query, _ := zeroSql.LookupQuery("drop-users-table")
- *
- *  =========== second ===========
- *	query, err := zeroSql.LookupQueryAny("drop-users-table")
- *	if err != nil {
- *		log.Fatal(err)
- *	}
- *	fmt.Println(query)	// DROP TABLE users;
- *
- *  =========== third ===========
- *  println(zeroSql.Get("type").QueryAny("find-one-user-by-email"))
- *	println(zeroSql.Get("type").QueryAny("find-users-by-email"))
- *	println(zeroSql.Get("tag").QueryAny("drop-users-table"))
- * 	query, _ := zeroSql.Get("name").QueryAny("create-users-table")
- *	fmt.Println(query)
- */
+/*
+	zeroSql, _ := sqlz.Load("query.sql")
+
+	=========== first: default tag by name ===========
+	println(zeroSql.LookupQuery("create-user")) // INSERT INTO users (name, email) VALUES(?, ?);
+
+	=========== second: any ===========
+	println(zeroSql.LookupQueryAny("drop-users-table")) //  DROP TABLE users;
+
+	=========== third ===========
+	println(zeroSql.Get("type").QueryAny("find-one-user-by-email")) // SELECT id,name,email FROM users WHERE email = ? LIMIT 1;
+	println(zeroSql.Get("tag").QueryAny("drop-users-table"))        // DROP TABLE users;
+
+
+	=========== other methods ===========
+	// zeroSql.PrintResult()
+	// println(zeroSql.matchTag)
+	// zeroSql.SetTag("type")
+*/
 
 type ZeroSql struct {
 	queries  map[string]string

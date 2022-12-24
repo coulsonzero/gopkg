@@ -9,6 +9,17 @@ import (
 	"strings"
 )
 
+// notice: refer to "github.com/qustavo/dotsql"
+
+// other : refer to "github.com/coulsonzero/gopkg/pro/sqlz"
+
+/**
+ * import "github.com/coulsonzero/gopkg/pro/dotsql"
+ *
+ * dotsql, _ := dotsql.LoadFromFile("query.sql")
+ * fmt.Println(dotsql.LookupQuery("create-user")) // INSERT INTO users (name, email) VALUES(?, ?);
+ */
+
 type DotSql struct {
 	queries map[string]string
 }
