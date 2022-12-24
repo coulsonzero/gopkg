@@ -3,10 +3,11 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/coulsonzero/gopkg/pro"
-	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"time"
+
+	"github.com/coulsonzero/gopkg/pro"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {

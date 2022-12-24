@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	_ "unsafe" // for go:linkname
 )
 
 /**
