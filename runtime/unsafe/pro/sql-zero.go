@@ -74,7 +74,6 @@ const (
 	sep          string = " >> "
 )
 
-//go:linkname Load github.com/coulsonzero/gopkg/pro/sqlz.Load
 func Load(sqlFile string) (*ZeroSql, error) {
 	file, err := os.Open(sqlFile)
 	if err != nil {
@@ -119,11 +118,31 @@ func Load(sqlFile string) (*ZeroSql, error) {
 	return res, nil
 }
 
-//go:linkname PrintResult github.com/coulsonzero/gopkg/pro/sqlz.PrintResult
+// PrintResult
+//  @return print the map result in the console.
 func (d *ZeroSql) PrintResult() {
 	for k, v := range d.queries {
 		fmt.Printf("key: %s\nvalue: %s\n", k, v)
 	}
+}
+
+// SetTag
+//  @Description: filter the result by match, only return the result of startsWith the match.
+//  @param match like "name", "type", "tag" and so on.
+//  @Usage
+//  zeroSql, _ := Load(filepath)
+//  zeroSql.SetTag("type")
+//  zeroSql.LookupQuery("create-user")
+func (d *ZeroSql) SetTag(match string) {
+	d.matchTag = match
+	m := make(map[string]string)
+	for k, v := range d.queries {
+		if strings.Split(k, sep)[0] == match {
+			m[k] = v
+		}
+	}
+
+	d.queries = m
 }
 
 func getByTag(line string) string {
@@ -137,7 +156,13 @@ func getByTag(line string) string {
 	return matches[1] + sep + matches[2]
 }
 
-//go:linkname LookupQuery github.com/coulsonzero/gopkg/pro/sqlz.LookupQuery
+// LookupQuery
+//  @Description: query the sql by the name commit
+//  @param name like "create-user"
+//  @Usage
+//  zeroSql, _ := Load(filepath)
+//  zeroSql.LookupQuery("create-user")	// default by "name"
+//  if SetTag("tag"), then only return the result of startsWith the match "tag"
 func (d *ZeroSql) LookupQuery(name string) (query string, err error) {
 	key := d.matchTag + sep + name
 	query, ok := d.queries[key]
@@ -148,7 +173,10 @@ func (d *ZeroSql) LookupQuery(name string) (query string, err error) {
 	return
 }
 
-//go:linkname LookupQueryAny github.com/coulsonzero/gopkg/pro/sqlz.LookupQueryAny
+// LookupQueryAny
+//  @Usage
+//  zeroSql, _ := Load(filepath)
+//  zeroSql.LookupQueryAny("create-user")	// default by any match
 func (d *ZeroSql) LookupQueryAny(name string) (query string, err error) {
 	for k, v := range d.queries {
 		key := strings.Split(k, sep)[1]
@@ -159,20 +187,6 @@ func (d *ZeroSql) LookupQueryAny(name string) (query string, err error) {
 	return "", fmt.Errorf("sql: '%s' could not be found", name)
 }
 
-//go:linkname SetTag github.com/coulsonzero/gopkg/pro/sqlz.SetTag
-func (d *ZeroSql) SetTag(match string) {
-	d.matchTag = match
-	m := make(map[string]string)
-	for k, v := range d.queries {
-		if strings.Split(k, sep)[0] == match {
-			m[k] = v
-		}
-	}
-
-	d.queries = m
-}
-
-//go:linkname Get github.com/coulsonzero/gopkg/pro/sqlz.Get
 func (d ZeroSql) Get(match string) *QuerySql {
 	d.matchTag = match
 	m := make(map[string]string)
@@ -186,7 +200,10 @@ func (d ZeroSql) Get(match string) *QuerySql {
 	return &QuerySql{queries: m}
 }
 
-//go:linkname QueryAny github.com/coulsonzero/gopkg/pro/sqlz.QueryAny
+// QueryAny
+//  @Usage
+//  query, _ := zeroSql.Get("name").QueryAny("create-users-table")
+//  fmt.Println(query)
 func (d *QuerySql) QueryAny(name string) (query string, err error) {
 	for k, v := range d.queries {
 		key := strings.Split(k, sep)[1]
