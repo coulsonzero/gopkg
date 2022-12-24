@@ -60,13 +60,13 @@ DROP TABLE users;
  *	fmt.Println(query)
  */
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.ZeroSql
+//go:linkname ZeroSql github.com/coulsonzero/gopkg/pro/sqlz.ZeroSql
 type ZeroSql struct {
 	queries  map[string]string
 	matchTag string
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.QuerySql
+//go:linkname QuerySql github.com/coulsonzero/gopkg/pro/sqlz.QuerySql
 type QuerySql struct {
 	queries map[string]string
 }
@@ -76,7 +76,7 @@ const (
 	sep          string = " >> "
 )
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.Load
+//go:linkname Load github.com/coulsonzero/gopkg/pro/sqlz.Load
 func Load(sqlFile string) (*ZeroSql, error) {
 	file, err := os.Open(sqlFile)
 	if err != nil {
@@ -121,7 +121,7 @@ func Load(sqlFile string) (*ZeroSql, error) {
 	return res, nil
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.RrintResult
+//go:linkname PrintResult github.com/coulsonzero/gopkg/pro/sqlz.RrintResult
 func (d *ZeroSql) PrintResult() {
 	for k, v := range d.queries {
 		fmt.Printf("key: %s\nvalue: %s\n", k, v)
@@ -139,7 +139,7 @@ func getByTag(line string) string {
 	return matches[1] + sep + matches[2]
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.LookupQuery
+//go:linkname LookupQuery github.com/coulsonzero/gopkg/pro/sqlz.LookupQuery
 func (d *ZeroSql) LookupQuery(name string) (query string, err error) {
 	key := d.matchTag + sep + name
 	query, ok := d.queries[key]
@@ -150,7 +150,7 @@ func (d *ZeroSql) LookupQuery(name string) (query string, err error) {
 	return
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.LookupQueryAny
+//go:linkname LookupQueryAny github.com/coulsonzero/gopkg/pro/sqlz.LookupQueryAny
 func (d *ZeroSql) LookupQueryAny(name string) (query string, err error) {
 	for k, v := range d.queries {
 		key := strings.Split(k, sep)[1]
@@ -161,7 +161,7 @@ func (d *ZeroSql) LookupQueryAny(name string) (query string, err error) {
 	return "", fmt.Errorf("sql: '%s' could not be found", name)
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.SetTag
+//go:linkname SetTag github.com/coulsonzero/gopkg/pro/sqlz.SetTag
 func (d *ZeroSql) SetTag(match string) {
 	d.matchTag = match
 	m := make(map[string]string)
@@ -174,7 +174,7 @@ func (d *ZeroSql) SetTag(match string) {
 	d.queries = m
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.Get
+//go:linkname Get github.com/coulsonzero/gopkg/pro/sqlz.Get
 func (d ZeroSql) Get(match string) *QuerySql {
 	d.matchTag = match
 	m := make(map[string]string)
@@ -188,7 +188,7 @@ func (d ZeroSql) Get(match string) *QuerySql {
 	return &QuerySql{queries: m}
 }
 
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/sqlz.QueryAny
+//go:linkname QueryAny github.com/coulsonzero/gopkg/pro/sqlz.QueryAny
 func (d *QuerySql) QueryAny(name string) (query string, err error) {
 	for k, v := range d.queries {
 		key := strings.Split(k, sep)[1]
