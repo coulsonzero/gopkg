@@ -32,7 +32,7 @@ DROP TABLE users;
 
 /**
  *
- * zeroSql, _ := Load("./src/package/os/sql/query.sql")
+ * zeroSql, _ := Load("query.sql")
  *
  *	// zeroSql.PrintResult()
  *	// println(zeroSql.matchTag)

@@ -11,7 +11,7 @@ import (
 )
 
 /**
- * 	dotSql, _ := LoadFromFile("./src/package/os/sql/query.sql")
+ * 	dotSql, _ := LoadFromFile("query.sql")
  *	query, _ := dotSql.LookupQuery("create-user")
  *	fmt.Println(query)	//TODO INSERT INTO users (name, email) VALUES(?, ?)
  */
