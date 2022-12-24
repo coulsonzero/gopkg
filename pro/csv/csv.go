@@ -1,10 +1,14 @@
 package csv
 
-/**
- *  res := readCsv("test.csv")
- *	printCsv(res)
- *	writeCsv("./src/conf/res.csv", res)
- */
+/*
+import "github.com/coulsonzero/gopkg/pro/csv"
+
+func main() {
+	res := csv.ReadCsv("./conf/test.csv")
+	csv.PrintCsv(res)
+	csv.WriteCsv("./conf/res.csv", res)
+}
+*/
 
 // ReadCsv 读取csv文件
 func ReadCsv(filename string) [][]string
