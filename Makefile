@@ -8,7 +8,7 @@ dev:
 	@git checkout dev
 	@git add .
 	@git status
-	@-if [ "$message" != "" ]; then git commit -m "[update]: $message" & git pull origin dev & git push origin dev; else git reset & echo "[dev] You haven't entered any comments !"; fi
+	@-if [ "$(message)" != "" ]; then git commit -m "[update]: $(message)" & git pull origin dev & git push origin dev; else git reset & echo "[dev] You haven't entered any comments !"; fi
 	@git checkout dev
 	@echo '------------------------'
 
