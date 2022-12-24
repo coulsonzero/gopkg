@@ -1,9 +1,10 @@
 package pro
 
 import (
-	"github.com/zhangyunhao116/pdqsort"
 	"sort"
 	_ "unsafe" // for go:linkname
+
+	"github.com/zhangyunhao116/pdqsort"
 )
 
 type sortSlice interface {

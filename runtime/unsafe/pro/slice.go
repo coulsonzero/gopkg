@@ -2,6 +2,7 @@ package pro
 
 import (
 	"fmt"
+	_ "unsafe" // for go:linkname
 )
 
 // make: 主动分配容量

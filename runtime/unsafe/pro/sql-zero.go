@@ -60,13 +60,11 @@ DROP TABLE users;
  *	fmt.Println(query)
  */
 
-//go:linkname ZeroSql github.com/coulsonzero/gopkg/pro/sqlz.ZeroSql
 type ZeroSql struct {
 	queries  map[string]string
 	matchTag string
 }
 
-//go:linkname QuerySql github.com/coulsonzero/gopkg/pro/sqlz.QuerySql
 type QuerySql struct {
 	queries map[string]string
 }
@@ -121,7 +119,7 @@ func Load(sqlFile string) (*ZeroSql, error) {
 	return res, nil
 }
 
-//go:linkname PrintResult github.com/coulsonzero/gopkg/pro/sqlz.RrintResult
+//go:linkname PrintResult github.com/coulsonzero/gopkg/pro/sqlz.PrintResult
 func (d *ZeroSql) PrintResult() {
 	for k, v := range d.queries {
 		fmt.Printf("key: %s\nvalue: %s\n", k, v)

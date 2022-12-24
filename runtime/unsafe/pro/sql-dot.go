@@ -16,7 +16,6 @@ import (
  *	fmt.Println(query)	//TODO INSERT INTO users (name, email) VALUES(?, ?)
  */
 
-//go:linkname DotSql github.com/coulsonzero/gopkg/pro/dotsql.DotSql
 type DotSql struct {
 	queries map[string]string
 }
@@ -37,7 +36,7 @@ func Get(match string) {
 }
 
 // LookupQuery 根据注释读取sql文件中的sql语句
-//go:linkname readFileSql github.com/coulsonzero/gopkg/pro/dotsql.LookupQuery
+//go:linkname LookupQuery github.com/coulsonzero/gopkg/pro/dotsql.LookupQuery
 func (d DotSql) LookupQuery(name string) (query string, err error) {
 	query, ok := d.queries[name]
 	if !ok {
