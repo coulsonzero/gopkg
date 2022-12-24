@@ -23,13 +23,11 @@ type stateFn func(*Scanner) stateFn
 
 var matchTag string = "name"
 
-//go:linkname Get github.com/coulsonzero/gopkg/pro/dotsql.Get
 func Get(match string) {
 	matchTag = match
 }
 
 // LookupQuery 根据注释读取sql文件中的sql语句
-//go:linkname LookupQuery github.com/coulsonzero/gopkg/pro/dotsql.LookupQuery
 func (d DotSql) LookupQuery(name string) (query string, err error) {
 	query, ok := d.queries[name]
 	if !ok {
@@ -40,7 +38,6 @@ func (d DotSql) LookupQuery(name string) (query string, err error) {
 }
 
 // LoadFromFile 加载sql文件
-//go:linkname LoadFromFile github.com/coulsonzero/gopkg/pro/dotsql.LoadFromFile
 func LoadFromFile(sqlFile string) (*DotSql, error) {
 	f, err := os.Open(sqlFile)
 	if err != nil {
