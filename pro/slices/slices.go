@@ -16,7 +16,7 @@ func Delete[T sl](array []T, index int) []T
 
 func Reverse[T sl](array []T) []T
 
-func IsEqual(x any, y any) bool
+func Equal(x any, y any) bool
 
 func SortStr(array []string, reverse ...bool)
 

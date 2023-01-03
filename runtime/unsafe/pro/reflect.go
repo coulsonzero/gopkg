@@ -6,6 +6,7 @@ import (
 	_ "unsafe" // for go:linkname
 )
 
+//go:linkname isEqual github.com/coulsonzero/gopkg/pro/slices.Equal
 //go:linkname isEqual github.com/coulsonzero/gopkg/pro.IsEqual
 // isEqual
 // 判断两个对象是否相等
