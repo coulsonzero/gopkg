@@ -6,11 +6,9 @@ import (
 	_ "unsafe" // for go:linkname
 )
 
-//go:linkname isEqual github.com/coulsonzero/gopkg/pro/slices.Equal
-//go:linkname isEqual github.com/coulsonzero/gopkg/pro.IsEqual
-// isEqual
-// 判断两个对象是否相等
-func isEqual(x any, y any) bool {
+//go:linkname Equal github.com/coulsonzero/gopkg/pro/slices.Equal
+// Equal 判断两个对象是否相等
+func Equal(x any, y any) bool {
 	return reflect.DeepEqual(x, y)
 }
 
