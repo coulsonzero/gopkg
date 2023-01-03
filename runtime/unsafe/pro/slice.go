@@ -16,6 +16,7 @@ type sl interface {
 	int | int64 | float64 | string | bool
 }
 
+//go:linkname slice_print github.com/coulsonzero/gopkg/pro/slices.Print
 //go:linkname slice_print github.com/coulsonzero/gopkg/pro.SlicePrint
 func slice_print[T sl](slice ...[]T) {
 	// fmt.Printf("len: %d, cap: %d, slice: %v \n", len(slice), cap(slice), slice)
@@ -24,6 +25,7 @@ func slice_print[T sl](slice ...[]T) {
 	}
 }
 
+//go:linkname slice_insert github.com/coulsonzero/gopkg/pro/slices.Insert
 //go:linkname slice_insert github.com/coulsonzero/gopkg/pro.SliceInsert
 // 插入元素
 func slice_insert[T sl](slice []T, index int, value T) []T {
@@ -37,12 +39,14 @@ func slice_insert2(slice []int, index int, value int) []int {
 	return slice
 }
 
+//go:linkname slice_remove github.com/coulsonzero/gopkg/pro/slices.Delete
 //go:linkname slice_remove github.com/coulsonzero/gopkg/pro.SliceRemove
 // 删除单个元素
 func slice_remove[T sl](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
+//go:linkname slice_contains github.com/coulsonzero/gopkg/pro/slices.Contains
 //go:linkname slice_contains github.com/coulsonzero/gopkg/pro.SliceContains
 // 判断是否包含目标元素
 func slice_contains[T sl](array []T, val T) bool {
@@ -54,6 +58,7 @@ func slice_contains[T sl](array []T, val T) bool {
 	return false
 }
 
+//go:linkname slice_reverse github.com/coulsonzero/gopkg/pro/slices.Reverse
 //go:linkname slice_reverse github.com/coulsonzero/gopkg/pro.SliceReverse
 // 反转
 func slice_reverse[T sl](s []T) []T {
@@ -61,4 +66,14 @@ func slice_reverse[T sl](s []T) []T {
 		s[i], s[j] = s[j], s[i]
 	}
 	return s
+}
+
+//go:linkname slice_index github.com/coulsonzero/gopkg/pro/slices.Index
+func slice_index[T sl](s []T, value T) int {
+	for i := 0; i < len(s); i++ {
+		if s[i] == value {
+			return i
+		}
+	}
+	return -1
 }

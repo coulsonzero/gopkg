@@ -8,12 +8,6 @@ import (
 	_ "unsafe" // for go:linkname
 )
 
-/**
- *  res := readCsv("./src/conf/test.csv")
- *	printCsv(res)
- *	writeCsv("./src/conf/res.csv", res)
- */
-
 //go:linkname readCsv github.com/coulsonzero/gopkg/pro/csv.ReadCsv
 func readCsv(filename string) [][]string {
 	file, err := os.Open(filename)

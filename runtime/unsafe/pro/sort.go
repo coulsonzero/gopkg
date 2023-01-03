@@ -12,6 +12,7 @@ type sortSlice interface {
 	sortInt()
 }
 
+//go:linkname sortStr github.com/coulsonzero/gopkg/pro/slices.SortStr
 //go:linkname sortStr github.com/coulsonzero/gopkg/pro.SortStr
 // sortStr 字符串数组排序
 func sortStr(s []string, reverse ...bool) {
@@ -32,6 +33,7 @@ func sortStr(s []string, reverse ...bool) {
 	}
 }
 
+//go:linkname sortInt github.com/coulsonzero/gopkg/pro/slices.SortInt
 //go:linkname sortInt github.com/coulsonzero/gopkg/pro.SortInt
 // sortInt 整数数组排序
 // To sort an integer Array in place
