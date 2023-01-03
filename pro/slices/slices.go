@@ -10,7 +10,7 @@ func Index[T sl](array []T) int
 
 func Print[T sl](array ...[]T)
 
-func Insert[T sl](array []T, index int, value T) []T
+func Insert[T sl](array []T, i int, v ...T) []T
 
 func Delete[T sl](array []T, index int) []T
 

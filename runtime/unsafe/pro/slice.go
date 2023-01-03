@@ -25,18 +25,23 @@ func slice_print[T sl](slice ...[]T) {
 	}
 }
 
-//go:linkname slice_insert github.com/coulsonzero/gopkg/pro/slices.Insert
+// go:linkname slice_insert github.com/coulsonzero/gopkg/pro/slices.Insert
 //go:linkname slice_insert github.com/coulsonzero/gopkg/pro.SliceInsert
 // 插入元素
 func slice_insert[T sl](slice []T, index int, value T) []T {
 	return append(slice[:index], append([]T{value}, slice[index:]...)...)
 }
 
-func slice_insert2(slice []int, index int, value int) []int {
-	slice = append(slice, 0)
-	copy(slice[index+1:], slice[index:])
-	slice[index] = value
-	return slice
+// func slice_insert2(slice []int, index int, value int) []int {
+// 	slice = append(slice, 0)
+// 	copy(slice[index+1:], slice[index:])
+// 	slice[index] = value
+// 	return slice
+// }
+
+//go:linkname insert github.com/coulsonzero/gopkg/pro/slices.Insert
+func insert[T sl](slice []T, i int, v ...T) []T {
+	return append(slice[:i], append(v, slice[i:]...)...)
 }
 
 //go:linkname slice_remove github.com/coulsonzero/gopkg/pro/slices.Delete
